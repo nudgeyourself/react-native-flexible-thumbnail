@@ -4,7 +4,7 @@
   "description": "A smaller version of a full-size image that you can easily align or apply an overlay to",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",

@@ -1,8 +1,3 @@
-/**
- * react-native-left-aligned-image
- * @flow
- */
+import FlexibleThumbnail from './src/FlexibleThumbnail';
 
-'use strict';
-
-export { LeftAlignedImage } from './src/LeftAlignedImage';
+export default FlexibleThumbnail;

@@ -18,3 +18,6 @@ This component resizes the Image component after the image is downloaded so the 
 * handle updating of image on device rotation
 * customizable containerStyle. Seems like this might be useful for applying padding to both the container and overlay, making overlays with elements that clip the view work better in Android, which seems to have issues with displaying anything absolutely-positioned that clips its parent.
 * perhaps a loading indicator while it's figuring out the image size (which requires downloading the image)
+
+# Attribution
+Inspired by [react-native-left-aligned-image](https://github.com/itinance/react-native-left-aligned-image), an elegant implementation of Image.getSize() to left-justify an image within its container.

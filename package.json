@@ -1,27 +1,25 @@
 {
-  "name": "react-native-left-aligned-image",
-  "version": "0.9.1",
-  "description": "Left-aligned Images with resizeMode of 'center' or 'contain'",
+  "name": "react-native-flexible-thumbnail",
+  "version": "0.0.1",
+  "description": "A smaller version of a full-size image that you can easily align or apply an overlay to",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:itinance/react-native-left-aligned-image"
+    "url": "git@github.com:nudgeyourself/react-native-flexible-thumbnail"
   },
   "keywords": [
     "react-native",
     "react-native-component",
     "image"
   ],
-  "author": "Hagen Huebel <hhuebel@itinance.com> (hhuebel@itinance.com)",
+  "author": "Nudge, LLC",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "flow-bin": "0.28.0",
     "react": "^15.4.2",
-    "react-native": "^0.40.0"
+    "react-native": "^0.44.0"
   }
 }

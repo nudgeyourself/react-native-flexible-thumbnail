@@ -53,11 +53,16 @@ export default class FlexibleThumbnail extends Component {
     render() {
         const {source, height, width, imageWidth, imageHeight} = this.state;
         const { renderOverlay, imageStyle } = this.props;
+        let ImageComponent = this.props.ImageComponent;
+
+        if (!ImageComponent) {
+            ImageComponent = Image;
+        }
 
         if (source) {
             return (
                 <View style={{width: imageWidth, height: imageHeight}} >
-                    <Image
+                    <ImageComponent
                         style={[ imageStyle, {width: imageWidth, height: imageHeight} ]}
                         resizeMode="contain"
                         source={source}

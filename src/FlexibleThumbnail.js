@@ -5,6 +5,8 @@ import {
   View,
   Dimensions,
 } from 'react-native';
+import PropTypes from 'prop-types';
+import resolveAssetSource from 'react-native/Libraries/Image/resolveAssetSource';
 
 import { calcDim } from './calculateDimensions';
 
@@ -14,8 +16,6 @@ export default class FlexibleThumbnail extends Component {
         super(props)
 
         this.state = {
-            height: 0,
-            width: 0,
             imageWidth: 0,
             imageHeight: 0,
             source: null,
@@ -32,27 +32,38 @@ export default class FlexibleThumbnail extends Component {
 
     _updateState(props) {
         const {source} = props;
-        const height = props.maxHeight;
-        const width = props.maxWidth || Dimensions.get('window').width;
+        const dimensions = Dimensions.get('window');
+        const maxHeight = props.maxHeight || dimensions.height;
+        const maxWidth = props.maxWidth || dimensions.width;
 
-        const imageUri = source.uri;
-
-        Image.getSize(imageUri, (iw, ih) => {
-            const {imageWidth, imageHeight} = calcDim(iw, ih, height, width)
+        if (this.props.isStaticImage) {
+            const localImageDimensions = resolveAssetSource(this.props.source);
+            const {imageWidth, imageHeight} = calcDim(localImageDimensions.width, localImageDimensions.height, maxHeight, maxWidth);
 
             this.setState({
                 imageWidth,
                 imageHeight,
                 source,
-                height: height,
-                width: width,
+            });
+            return;
+        }
+
+        const imageUri = source.uri;
+
+        Image.getSize(imageUri, (iw, ih) => {
+            const {imageWidth, imageHeight} = calcDim(iw, ih, maxHeight, maxWidth);
+
+            this.setState({
+                imageWidth,
+                imageHeight,
+                source,
             });
         });
     }
 
     render() {
-        const {source, height, width, imageWidth, imageHeight} = this.state;
-        const { renderOverlay, imageStyle } = this.props;
+        const {source, imageWidth, imageHeight} = this.state;
+        const { renderOverlay, imageStyle, children } = this.props;
         let ImageComponent = this.props.ImageComponent;
 
         if (!ImageComponent) {
@@ -66,7 +77,9 @@ export default class FlexibleThumbnail extends Component {
                         style={[ imageStyle, {width: imageWidth, height: imageHeight} ]}
                         resizeMode="contain"
                         source={source}
-                    />
+                    >
+                    {children}
+                    </ImageComponent>
                     {
                         renderOverlay ?
                         <View style={{
@@ -82,6 +95,7 @@ export default class FlexibleThumbnail extends Component {
                         :
                         null
                     }
+                    
                 </View>
             );
         }
@@ -91,3 +105,23 @@ export default class FlexibleThumbnail extends Component {
         )
     }
 }
+
+FlexibleThumbnail.propTypes = {
+    maxHeight: PropTypes.number,
+    maxWidth: PropTypes.number,
+    children: PropTypes.any,
+    renderOverlay: PropTypes.func,
+    ImageComponent: PropTypes.func,
+    isStaticImage: PropTypes.bool,
+    imageStyle: PropTypes.any,
+};
+
+FlexibleThumbnail.defaultProps = {
+    maxHeight: null,
+    maxWidth: null,
+    children: null,
+    renderOverlay: null,
+    ImageComponent: null,
+    isLocalImage: null,
+    imageStyle: null,
+};

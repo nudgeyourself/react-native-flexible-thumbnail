@@ -9,11 +9,14 @@ This is pretty alpha and the API, name, and purpose is subject to change.
 Image components don't act a whole lot like most other components once you apply the "contain" resizeMode. The size of the component can be based on flexbox, but ultimately the size of the image is probably less than the dimensions of the Image component, because the image is downloaded asynchronously and has to be shrunk. This makes stuff like aligning the image itself (and not just the Image component) to the left or right difficult. It's also difficult to overlay something just over the image itself.
 This component resizes the Image component after the image is downloaded so the component and the image have the same dimensions. That way, you can do cool stuff like apply overlays or justify the image to one side or the other.
 
-# Props
-* maxHeight (required) - the tallest your image can be. It will be shrunk to match this minimum height using resizeMode = contain.
-* maxWidth - you can also specify a maximum width of the image. If you don't, the widest your image can be is the width of the screen.
+# Props (all optional)
+* maxHeight - the tallest your image can be. If you do not specify a height, it will max out at the screen height.
+* maxWidth - the most wide your image can be. If you do not specify a width, it will max out at the screen width.
 * renderOverlay - function that returns a component that will be overlayed directly over the image once the image is rendered. Useful for shading over an image or adding buttons over an image.
 * imageStyle - additional styles to apply to the Image component. Useful for borderRadius. Note that this style is applied before the updated width and height, so if you put width and height in your custom style, they will have no effect.
+* ImageComponent - If specified, will use this component for rending the image. Must accept `source` and `resizeMode` props.
+* isStaticImage - (default: false) If your image is embedded within the app and referenced via a `requires()` function, then set this flag to true. This is needed because there is a completely different way to determine the size of a static image, and it's not possible (or at least not clear) as to how to definitively tell the difference between the two.
+* children - If your `ImageComponent` supports children (e.g., it's a `BackgroundImage`), then you can supply children to the `FlexibleThumbnail`.
 
 # Potential Next steps
 * handle updating of image on device rotation

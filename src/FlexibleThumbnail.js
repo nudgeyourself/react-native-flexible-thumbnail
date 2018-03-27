@@ -63,7 +63,7 @@ export default class FlexibleThumbnail extends Component {
 
     render() {
         const {source, imageWidth, imageHeight} = this.state;
-        const { renderOverlay, imageStyle, children, containerStyle } = this.props;
+        const { renderOverlay, imageStyle, children, containerStyle, ...props } = this.props;
         let ImageComponent = this.props.ImageComponent;
 
         if (!ImageComponent) {
@@ -79,7 +79,7 @@ export default class FlexibleThumbnail extends Component {
                         resizeMode="contain"
                         source={source}
                         defaultSource={source}
-                        resizeMethod="scale"
+                        {...props}
                     >
                     {children}
                     </ImageComponent>

@@ -63,7 +63,7 @@ export default class FlexibleThumbnail extends Component {
 
     render() {
         const {source, imageWidth, imageHeight} = this.state;
-        const { renderOverlay, imageStyle, children } = this.props;
+        const { renderOverlay, imageStyle, children, containerStyle } = this.props;
         let ImageComponent = this.props.ImageComponent;
 
         if (!ImageComponent) {
@@ -72,12 +72,14 @@ export default class FlexibleThumbnail extends Component {
 
         if (source) {
             return (
-                <View style={{width: imageWidth, height: imageHeight}} >
+                <View style={[{width: imageWidth, height: imageHeight}, containerStyle]} >
                     <ImageComponent
                         style={[ imageStyle, {width: imageWidth, height: imageHeight} ]}
+                        imageStyle={imageStyle}
                         resizeMode="contain"
                         source={source}
                         defaultSource={source}
+                        resizeMethod="scale"
                     >
                     {children}
                     </ImageComponent>
@@ -111,6 +113,7 @@ FlexibleThumbnail.propTypes = {
     maxHeight: PropTypes.number,
     maxWidth: PropTypes.number,
     children: PropTypes.any,
+    containerStyle: PropTypes.any,
     renderOverlay: PropTypes.func,
     ImageComponent: PropTypes.func,
     isStaticImage: PropTypes.bool,
@@ -121,6 +124,7 @@ FlexibleThumbnail.defaultProps = {
     maxHeight: null,
     maxWidth: null,
     children: null,
+    containerStyle: PropTypes.any,
     renderOverlay: null,
     ImageComponent: null,
     isLocalImage: null,

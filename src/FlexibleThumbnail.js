@@ -124,7 +124,7 @@ FlexibleThumbnail.defaultProps = {
     maxHeight: null,
     maxWidth: null,
     children: null,
-    containerStyle: PropTypes.any,
+    containerStyle: null,
     renderOverlay: null,
     ImageComponent: null,
     isLocalImage: null,

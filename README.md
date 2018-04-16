@@ -42,9 +42,7 @@ Go figure, it's not obvious how to do this in React Native.
                       top: Platform.OS === 'ios' ? -14 : 7,
                       right: Platform.OS === 'ios' ? -14 : 7,
                     }}>
-                    <Touchable
-                      onPress={onDeleteImage}
-                      hitSlop={{ top: 7, bottom: 7, left: 7, right: 7 }}>
+                    <TouchableOpacity onPress={onDeleteImage}>
                       <View
                         style={{
                           backgroundColor: 'red',
@@ -56,7 +54,7 @@ Go figure, it's not obvious how to do this in React Native.
                         }}>
                         <Text>X</Text>
                       </View>
-                    </Touchable>
+                    </TouchableOpacity>
                   </View>
                 )}
               />

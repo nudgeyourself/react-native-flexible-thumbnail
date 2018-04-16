@@ -17,8 +17,9 @@ This component resizes the Image component after the image is downloaded so the 
 * ImageComponent - If specified, will use this component for rending the image. Must accept `source` and `resizeMode` props.
 * isStaticImage - (default: false) If your image is embedded within the app and referenced via a `requires()` function, then set this flag to true. This is needed because there is a completely different way to determine the size of a static image, and it's not possible (or at least not clear) as to how to definitively tell the difference between the two.
 * children - If your `ImageComponent` supports children (e.g., it's a `BackgroundImage`), then you can supply children to the `FlexibleThumbnail`.
+* containerStyle - Additional styles applied to the container outside of the image. This can be useful for applying padding to both the container and overlay, making overlays with elements that clip the view work better in Android, which seems to have issues with displaying anything absolutely-positioned that clips its parent.
+* other props - any other props will be passed to the image component, so you can use other props supported by Image.
 
 # Potential Next steps
 * handle updating of image on device rotation
-* customizable containerStyle. Seems like this might be useful for applying padding to both the container and overlay, making overlays with elements that clip the view work better in Android, which seems to have issues with displaying anything absolutely-positioned that clips its parent.
-* perhaps a loading indicator while it's figuring out the image size (which requires downloading the image)
+* perhaps a loading indicator while it's figuring out the image size (which requires downloading the image). Or not... since you can pass your own ImageComponent in, you could pass an image component with a loading indicator.

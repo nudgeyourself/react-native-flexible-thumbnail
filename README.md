@@ -24,6 +24,44 @@ Go figure, it's not obvious how to do this in React Native.
 * containerStyle - Additional styles applied to the container outside of the image. This can be useful for applying padding to both the container and overlay, making overlays with elements that clip the view work better in Android, which seems to have issues with displaying anything absolutely-positioned that clips its parent.
 * other props - any other props will be passed to the image component, so you can use other props supported by Image.
 
+# Example (overlaying a component over the corner of an image)
+
+```
+             <FlexibleThumbnail
+                source={someImageSource}
+                maxHeight={150}
+                imageStyle={{
+                  borderRadius: 7,
+                }}
+                ImageComponent={Image}
+                renderOverlay={() => (
+                  <View
+                    style={{
+                      position: 'absolute',
+                      // Android doesn't let these buttons overlap the overlay container
+                      top: Platform.OS === 'ios' ? -14 : 7,
+                      right: Platform.OS === 'ios' ? -14 : 7,
+                    }}>
+                    <Touchable
+                      onPress={onDeleteImage}
+                      hitSlop={{ top: 7, bottom: 7, left: 7, right: 7 }}>
+                      <View
+                        style={{
+                          backgroundColor: 'red',
+                          height: 28,
+                          width: 28,
+                          borderRadius: 14,
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}>
+                        <Text>X</Text>
+                      </View>
+                    </Touchable>
+                  </View>
+                )}
+              />
+```
+
 # Potential Next steps
 * handle updating of image on device rotation
 * perhaps a loading indicator while it's figuring out the image size (which requires downloading the image). Or not... since you can pass your own ImageComponent in, you could pass an image component with a loading indicator.

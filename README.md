@@ -10,7 +10,7 @@ Image components don't act a whole lot like most other components once you apply
 This component resizes the Image component after the image is downloaded so the component and the image have the same dimensions. That way, you can do cool stuff like apply overlays or justify the image to one side or the other.
 
 ![demo of an icon overlayed over an image](https://github.com/nudgeyourself/react-native-flexible-thumbnail/blob/master/demo_image.jpg)
-*Go figure, it's not obvious how to do this in React Native.*
+Go figure, it's not obvious how to do this in React Native.
 
 # Props (all optional)
 * maxHeight - the tallest your image can be. If you do not specify a height, it will max out at the screen height.

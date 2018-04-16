@@ -9,6 +9,8 @@ This is pretty alpha and the API, name, and purpose is subject to change.
 Image components don't act a whole lot like most other components once you apply the "contain" resizeMode. The size of the component can be based on flexbox, but ultimately the size of the image is probably less than the dimensions of the Image component, because the image is downloaded asynchronously and has to be shrunk. This makes stuff like aligning the image itself (and not just the Image component) to the left or right difficult. It's also difficult to overlay something just over the image itself.
 This component resizes the Image component after the image is downloaded so the component and the image have the same dimensions. That way, you can do cool stuff like apply overlays or justify the image to one side or the other.
 
+![demo of an icon overlayed over an image](https://github.com/nudgeyourself/react-native-flexible-thumbnail/blob/master/demo_image.jpg)
+
 # Props (all optional)
 * maxHeight - the tallest your image can be. If you do not specify a height, it will max out at the screen height.
 * maxWidth - the most wide your image can be. If you do not specify a width, it will max out at the screen width.

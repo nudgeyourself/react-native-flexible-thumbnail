@@ -78,7 +78,6 @@ export default class FlexibleThumbnail extends Component {
                         imageStyle={imageStyle}
                         resizeMode="contain"
                         source={source}
-                        defaultSource={source}
                         {...props}
                     >
                     {children}

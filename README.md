@@ -13,7 +13,10 @@ This component resizes the Image component after the image is downloaded so the 
 
 Go figure, it's not obvious how to do this in React Native.
 
-# Props (all optional)
+# Required Props
+* Source - typical image source used by the `Image` component. If the source has a height and width already on it, this will be used in the resizing calculation instead of fetching the image to determine the size. Note that, if your source has HTTP headers on it, they don't get used when calling `Image.getSize()` - only the URI, because `getSize()` can only take a URI as a parameter. Therefore, images secured behind HTTP headers need to have a height and width specified in the source.
+
+# Optional Props
 * maxHeight - the tallest your image can be. If you do not specify a height, it will max out at the screen height.
 * maxWidth - the most wide your image can be. If you do not specify a width, it will max out at the screen width.
 * renderOverlay - function that returns a component that will be overlayed directly over the image once the image is rendered. Useful for shading over an image or adding buttons over an image.

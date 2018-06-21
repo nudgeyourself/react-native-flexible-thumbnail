@@ -48,17 +48,27 @@ export default class FlexibleThumbnail extends Component {
             return;
         }
 
-        const imageUri = source.uri;
-
-        Image.getSize(imageUri, (iw, ih) => {
-            const {imageWidth, imageHeight} = calcDim(iw, ih, maxHeight, maxWidth);
+        // Trust the height and width if its already in the source
+        if (source.height && source.width) {
+            const {imageWidth, imageHeight} = calcDim(source.width, source.height, maxHeight, maxWidth);
 
             this.setState({
                 imageWidth,
                 imageHeight,
                 source,
             });
-        });
+        } else {
+            const imageUri = source.uri;
+            Image.getSize(imageUri, (iw, ih) => {
+                const {imageWidth, imageHeight} = calcDim(iw, ih, maxHeight, maxWidth);
+    
+                this.setState({
+                    imageWidth,
+                    imageHeight,
+                    source,
+                });
+            });
+        }
     }
 
     render() {
@@ -80,7 +90,7 @@ export default class FlexibleThumbnail extends Component {
                         source={source}
                         {...props}
                     >
-                    {children}
+                        {children}
                     </ImageComponent>
                     {
                         renderOverlay ?
@@ -97,7 +107,6 @@ export default class FlexibleThumbnail extends Component {
                         :
                         null
                     }
-                    
                 </View>
             );
         }

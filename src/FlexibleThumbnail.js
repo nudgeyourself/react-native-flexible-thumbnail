@@ -22,11 +22,11 @@ export default class FlexibleThumbnail extends Component {
         }
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this._updateState(this.props)
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         this._updateState(nextProps)
     }
 
